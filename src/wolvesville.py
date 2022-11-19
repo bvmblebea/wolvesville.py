@@ -4,7 +4,7 @@ class WolvesVille:
 	def __init__(
 			self,
 			platform: str = "android",
-			locale: str = "ru"):
+			locale: str = "ru") -> None:
 		self.core_api = "https://api-core.wolvesville.com"
 		self.auth_api = "https://api-auth.wolvesville.com"
 		self.headers = {
@@ -13,7 +13,7 @@ class WolvesVille:
 		self.platform = platform
 		self.version_number = 4194708
 
-	def login(self, email: str, password: str):
+	def login(self, email: str, password: str) -> dict:
 		data = {
 			"email": email,
 			"password": password
@@ -30,7 +30,7 @@ class WolvesVille:
 	def sign_up_with_email_and_password(
 			self,
 			email: str,
-			password: str):
+			password: str) -> dict:
 		data = {
 			"email": email,
 			"password": password,
@@ -45,7 +45,7 @@ class WolvesVille:
 			self,
 			username: str,
 			token: str,
-			gender: str = "MALE"):
+			gender: str = "MALE") -> dict:
 		data = {
 			"username": username,
 			"token": token,
@@ -59,12 +59,12 @@ class WolvesVille:
 			json=data,
 			headers=self.headers).json()
 
-	def claim_daily_reward(self):
+	def claim_daily_reward(self) -> dict:
 		return requests.post(
 			f"{self.core_api}/dailyRewards",
 			headers=self.headers).json()
 
-	def change_password(self, password: str):
+	def change_password(self, password: str) -> dict:
 		data = {
 			"password": password,
 			"idToken": self.id_token
@@ -74,129 +74,129 @@ class WolvesVille:
 			json=data,
 			headers=self.headers).json()
 
-	def redeem_voucher(self, code: str):
+	def redeem_voucher(self, code: str) -> dict:
 		data = {"code": code}
 		return requests.post(
 			f"{self.core_api}/vouchers/redeem",
 			json=data,
 			headers=self.headers).json()
 
-	def get_friend_invitation_rewards(self):
+	def get_friend_invitation_rewards(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/players/friendInvitationRewards",
 			headers=self.headers).json()
 
-	def get_purchases(self):
+	def get_purchases(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/billing/purchases",
 			headers=self.headers).json()
 
-	def get_support_pins(self):
+	def get_support_pins(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/supportPins",
 			headers=self.headers).json()
 
-	def refresh_support_pins(self):
+	def refresh_support_pins(self) -> dict:
 		return requests.post(
 			f"{self.core_api}/supportPins/refresh",
 			headers=self.headers).json()
 
-	def get_sent_gifts(self):
+	def get_sent_gifts(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/billing/gifts/sent",
 			headers=self.headers).json()
 
-	def get_received_gifts(self):
+	def get_received_gifts(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/billing/gifts/received",
 			headers=self.headers).json()
 
-	def get_rotating_limited_offers(self):
+	def get_rotating_limited_offers(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/billing/rotatingLimitedOffers",
 			headers=self.headers).json()
 
-	def get_pending_friend_requests(self):
+	def get_pending_friend_requests(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/friendRequests/pending",
 			headers=self.headers).json()
 
-	def get_friends_list(self):
+	def get_friends_list(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/friends",
 			headers=self.headers).json()
 
-	def get_season_and_battlepasses(self):
+	def get_season_and_battlepasses(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/battlePass/seasonAndBattlePass",
 			headers=self.headers).json()
 
-	def get_daily_rewards_list(self):
+	def get_daily_rewards_list(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/dailyRewards",
 			headers=self.headers).json()
 
-	def get_wheel_items(self):
+	def get_wheel_items(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/rewards/wheelItems/v2",
 			headers=self.headers).json()
 
-	def get_calendars(self):
+	def get_calendars(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/calendars",
 			headers=self.headers).json()
 
-	def get_inventory(self):
+	def get_inventory(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/inventory",
 			headers=self.headers).json()
 
-	def get_equipped_items(self):
+	def get_equipped_items(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/equippedItems",
 			headers=self.headers).json()
 
-	def get_role_cards_abilities(self):
+	def get_role_cards_abilities(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/roleCards/abilities",
 			headers=self.headers).json()
 
-	def get_total_win_count(self):
+	def get_total_win_count(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/playerRoleStats/totalWinCount",
 			headers=self.headers).json()
 
-	def get_annoucements(self, limit: int = 1):
+	def get_annoucements(self, limit: int = 1) -> dict:
 		return requests.get(
 			f"{self.core_api}/announcements/v2?limit={limit}",
 			headers=self.headers).json()
 
-	def get_blocked_players(self):
+	def get_blocked_players(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/blockedPlayers",
 			headers=self.headers).json()
 
-	def get_claimable_rewards(self):
+	def get_claimable_rewards(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/challenges/claimAbleRewards",
 			headers=self.headers).json()
 
-	def get_clans_open_requests(self):
+	def get_clans_open_requests(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/clans/openRequests",
 			headers=self.headers).json()
 
-	def get_inventory_hidden_item_ids(self):
+	def get_inventory_hidden_item_ids(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/inventory/hiddenItemIds",
 			headers=self.headers).json()
 
-	def get_owned_role_cards(self):
+	def get_owned_role_cards(self) -> dict:
 		return requests.get(
 			f"{self.core_api}/roleCards/owned",
 			headers=self.headers).json()
 
-	def get_gamemode_info(self, gamemode: str):
+	def get_gamemode_info(self, gamemode: str) -> dict:
 		return requests.get(
 			f"{self.core_api}/roleRotation/funGameMode/{gamemode}",
 			headers=self.headers).json()
