@@ -5,7 +5,8 @@ class WolvesVille:
 			self,
 			platform: str = "android",
 			locale: str = "ru") -> None:
-		self.core_api = "https://api-core.wolvesville.com"
+		self.api = "https://api-game.wolvesville.com/api"
+		self.core_api = "https://core.api-wolvesville.com"
 		self.auth_api = "https://api-auth.wolvesville.com"
 		self.headers = {
 			"user-agent": "okhttp/3.12.12"}
@@ -199,4 +200,19 @@ class WolvesVille:
 	def get_gamemode_info(self, gamemode: str) -> dict:
 		return requests.get(
 			f"{self.core_api}/roleRotation/funGameMode/{gamemode}",
+			headers=self.headers).json()
+
+	def get_inventory_slot_price(self) -> dict:
+		return requests.get(
+			f"{self.core_api}/inventory/slotPrice",
+			headers=self.headers).json()
+
+	def check_app_cache(self) -> dict:
+		return requests.get(
+			f"{self.core_api}/appCache/check",
+			headers=self.headers).json()
+
+	def get_active_game_modes(self) -> dict:
+		return requests.get(
+			f"{self.api}/public/activeGameModes/v2",
 			headers=self.headers).json()
